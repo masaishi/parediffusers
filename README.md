@@ -10,14 +10,16 @@ I will write blog-style [notebooks](./notebooks) understanding how works using a
 I hope that it helps others who share a similar interest in the inner workings of image generation.
 
 ## Table of Contents
-### [Ch0.1 PareDiffusersPipeline](./notebooks/ch0.1_PareDiffusionPipeline.ipynb)
+### [Ch0.0.0 PareDiffusersPipeline](./notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb)
 - [x] Generate images using diffusers
 - [x] Without StableDiffusionPipeline
 - [ ] Without DDIMScheduler
 - [ ] Without UNet2DConditionModel
 - [ ] Without AutoencoderKL
-### [Ch0.1.1 Test PareDiffusersPipeline](./notebooks/ch0.1.1_TestPareDiffusionPipeline.ipynb)
+### [Ch0.0.1 Test PareDiffusersPipeline](./notebooks/ch0.1.1_Test_ParedDiffusionPipeline.ipynb)
 - Test PareDiffusersPipeline by pip install .
+### [Ch0.0.2 Play prompt_embeds](./notebooks/ch0.0.2_PareDiffusionPipeline.ipynb)
+- Play prompt_embeds, make gradation images by using two prompts.
 
 ## Contribution
 I am starting this project to help me understand the code in order to participate in diffusers' OSS. So, I think there may be some mistakes in my explanation, so if you find any, please feel free to correct them via an issue or pull request.
