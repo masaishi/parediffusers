@@ -16,9 +16,9 @@ I hope that it helps others who share a similar interest in the inner workings o
 - [ ] Without DDIMScheduler
 - [ ] Without UNet2DConditionModel
 - [ ] Without AutoencoderKL
-### [Ch0.0.1 Test PareDiffusersPipeline](./notebooks/ch0.1.1_Test_ParedDiffusionPipeline.ipynb)
+### [Ch0.0.1 Test PareDiffusersPipeline](./notebooks/ch0.0.1_Test_ParedDiffusionPipeline.ipynb)
 - Test PareDiffusersPipeline by pip install .
-### [Ch0.0.2 Play prompt_embeds](./notebooks/ch0.0.2_PareDiffusionPipeline.ipynb)
+### [Ch0.0.2 Play prompt_embeds](./notebooks/ch0.0.2_Play_prompt_embeds.ipynb)
 - Play prompt_embeds, make gradation images by using two prompts.
 
 ## Contribution
