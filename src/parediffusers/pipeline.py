@@ -40,23 +40,19 @@ class PareDiffusionPipeline:
 		"""
 		Encode the text prompt into embeddings using the text encoder.
 		"""
-		text_inputs = self.tokenizer(prompt, padding="max_length", max_length=self.tokenizer.model_max_length, truncation=True, return_tensors="pt")
-		text_input_ids = text_inputs.input_ids.to(self.device)
-		prompt_embeds = self.text_encoder(text_input_ids)[0].to(dtype=self.dtype, device=self.device)
-
-		# Generate and concatenate negative prompts for classifier-free guidance
-		negative_prompt_embeds = self.generate_negative_embes(prompt_embeds.shape[1])
+		prompt_embeds = self.get_embes(prompt, self.tokenizer.model_max_length)
+		negative_prompt_embeds = self.get_embes([''], prompt_embeds.shape[1])
 		prompt_embeds = torch.cat([negative_prompt_embeds, prompt_embeds])
-
 		return prompt_embeds
 
-	def generate_negative_embes(self, max_length):
+	def get_embes(self, prompt, max_length):
 		"""
-		Generate negative prompts for classifier-free guidance.
+		Encode the text prompt into embeddings using the text encoder.
 		"""
-		uncond_input = self.tokenizer([""], padding="max_length", max_length=max_length, truncation=True, return_tensors="pt").to(self.device)
-		negative_prompt_embeds = self.text_encoder(uncond_input.input_ids)[0].to(dtype=self.dtype, device=self.device)
-		return negative_prompt_embeds
+		text_inputs = self.tokenizer(prompt, padding="max_length", max_length=max_length, truncation=True, return_tensors="pt")
+		text_input_ids = text_inputs.input_ids.to(self.device)
+		prompt_embeds = self.text_encoder(text_input_ids)[0].to(dtype=self.dtype, device=self.device)
+		return prompt_embeds
 
 	def get_latent(self, width: int, height: int):
 		"""
@@ -120,6 +116,16 @@ class PareDiffusionPipeline:
 	def __call__(self, prompt: str, height: int = 512, width: int = 512, num_inference_steps: int = 50, guidance_scale: int = 7.5):
 		"""
 		Generate an image from a text prompt using the entire pipeline.
+
+		Args:
+			prompt (str): The text prompt to generate an image from.
+			height (int, optional): The height of the generated image. Defaults to 512.
+			width (int, optional): The width of the generated image. Defaults to 512.
+			num_inference_steps (int, optional): The number of diffusion steps to perform. Defaults to 50.
+			guidance_scale (int, optional): The scale of the guidance. Defaults to 7.5.
+		
+		Returns:
+			PIL.Image: The generated image.
 		"""
 		prompt_embeds = self.encode_prompt(prompt)
 		latents = self.get_latent(width, height).unsqueeze(dim=0)

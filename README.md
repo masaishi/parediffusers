@@ -21,5 +21,20 @@ I hope that it helps others who share a similar interest in the inner workings o
 ### [Ch0.0.2 Play prompt_embeds](./notebooks/ch0.0.2_Play_prompt_embeds.ipynb)
 - Play prompt_embeds, make gradation images by using two prompts.
 
+## Usage
+```python
+import torch
+from parediffusers import PareDiffusionPipeline
+
+device = torch.device("cuda")
+dtype = torch.float16
+model_name = "stabilityai/stable-diffusion-2"
+
+pipe = PareDiffusionPipeline.from_pretrained(model_name, device=device, dtype=dtype)
+prompt = "painting depicting the sea, sunrise, ship, artstation, 4k, concept art"
+image = pipe(prompt)
+display(image)
+```
+
 ## Contribution
 I am starting this project to help me understand the code in order to participate in diffusers' OSS. So, I think there may be some mistakes in my explanation, so if you find any, please feel free to correct them via an issue or pull request.
