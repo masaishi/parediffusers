@@ -4,11 +4,7 @@
 .LSOverride
 
 .pypirc
-
-sample/
-
 build/
 dist/
-
-parediffusers.egg-info/
+src/parediffusers.egg-info/
 src/parediffusers/__pycache__/

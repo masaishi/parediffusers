@@ -1,4 +1,7 @@
 # PareDiffusers
+
+[![parediffusers on PyPI](https://img.shields.io/pypi/v/parediffusers.svg)](https://pypi.org/project/parediffusers)
+
 The library `pared` down the features of `diffusers` implemented the minimum function to generate images without using [huggingface/diffusers](https://github.com/huggingface/diffusers/tree/main) to understand the inner workings of the library.
 
 
@@ -9,16 +12,20 @@ I will write blog-style [notebooks](./notebooks) understanding how works using a
 
 I hope that it helps others who share a similar interest in the inner workings of image generation.
 
+## Versions
+- v0.0.0: After Ch0.0.0, without StableDiffusionPipeline.
+
 ## Table of Contents
-### [Ch0.0.0 PareDiffusersPipeline](./notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb)
+### [Ch0.0.0 PareDiffusersPipeline](./notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb)
+
 - [x] Generate images using diffusers
 - [x] Without StableDiffusionPipeline
 - [ ] Without DDIMScheduler
 - [ ] Without UNet2DConditionModel
 - [ ] Without AutoencoderKL
-### [Ch0.0.1 Test PareDiffusersPipeline](./notebooks/ch0.0.1_Test_ParedDiffusionPipeline.ipynb)
+### [Ch0.0.1 Test PareDiffusersPipeline](./notebooks/ch0.0.1_Test_ParedDiffusionPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.1_Test_ParedDiffusionPipeline.ipynb)
 - Test PareDiffusersPipeline by pip install .
-### [Ch0.0.2 Play prompt_embeds](./notebooks/ch0.0.2_Play_prompt_embeds.ipynb)
+### [Ch0.0.2 Play prompt_embeds](./notebooks/ch0.0.2_Play_prompt_embeds.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.2_Play_prompt_embeds.ipynb)
 - Play prompt_embeds, make gradation images by using two prompts.
 
 ## Usage
