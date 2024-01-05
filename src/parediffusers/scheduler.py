@@ -2,6 +2,7 @@ import json
 import numpy as np
 import torch
 from huggingface_hub import hf_hub_download
+from .utils import DictDotNotation
 
 class PareDDIMScheduler:
 	def __init__(
@@ -9,7 +10,7 @@ class PareDDIMScheduler:
 		config_dict: dict
 	):
 		"""Initialize beta and alpha values for the scheduler."""
-		self.config = ConfigClass(**config_dict)
+		self.config = DictDotNotation(**config_dict)
 		self.betas =  torch.linspace(self.config.beta_start**0.5, self.config.beta_end**0.5, self.config.num_train_timesteps, dtype=torch.float32) ** 2
 		self.alphas = 1.0 - self.betas
 		self.alphas_cumprod = torch.cumprod(self.alphas, dim=0)
