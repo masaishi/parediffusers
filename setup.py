@@ -1,9 +1,12 @@
 from setuptools import setup, find_packages
 
 install_requires = [
+	'numpy',
 	'torch',
 	'torchvision',
-	'transformers'
+	'transformers',
+	'pillow',
+	'huggingface_hub'
 ]
 
 setup(
@@ -15,7 +18,7 @@ setup(
 	long_description_content_type='text/markdown',
 	license='MIT License',
 	url='https://github.com/masaishi/parediffusers',
-	version='0.0.0',
+	version='0.1.2',
 	python_requires='>=3.6',
 	install_requires=install_requires,
 	package_dir={"": "src"},
