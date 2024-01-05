@@ -1,14 +1,9 @@
 import json
 import numpy as np
 import torch
+from huggingface_hub import hf_hub_download
 
-class ConfigClass:
-	def __init__(self, **kwargs):
-		"""Initialize scheduler with configuration dictionary."""
-		for key, value in kwargs.items():
-			setattr(self, key, value)
-
-class ParedDDIMScheduler:
+class PareDDIMScheduler:
 	def __init__(
 		self,
 		config_dict: dict

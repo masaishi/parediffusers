@@ -2,7 +2,7 @@ import torch
 from PIL import Image
 from torchvision.transforms import ToPILImage
 from transformers import CLIPTokenizer, CLIPTextModel
-from .scheduler import ParedDDIMScheduler
+from .scheduler import PareDDIMScheduler
 from diffusers import UNet2DConditionModel, AutoencoderKL
 
 class PareDiffusionPipeline:
@@ -31,7 +31,7 @@ class PareDiffusionPipeline:
 		"""
 		tokenizer = CLIPTokenizer.from_pretrained(model_name, subfolder="tokenizer")
 		text_encoder = CLIPTextModel.from_pretrained(model_name, subfolder="text_encoder")
-		scheduler = ParedDDIMScheduler.from_config(model_name, subfolder="scheduler")
+		scheduler = PareDDIMScheduler.from_config(model_name, subfolder="scheduler")
 		unet = UNet2DConditionModel.from_pretrained(model_name, subfolder="unet")
 		vae = AutoencoderKL.from_pretrained(model_name, subfolder="vae")
 		return cls(tokenizer, text_encoder, scheduler, unet, vae, device, dtype)
