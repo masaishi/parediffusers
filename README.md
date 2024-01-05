@@ -17,16 +17,26 @@ I hope that it helps others who share a similar interest in the inner workings o
 
 ## Table of Contents
 ### [Ch0.0.0 PareDiffusersPipeline](./notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb)
-
+version: v0.0.0
 - [x] Generate images using diffusers
 - [x] Without StableDiffusionPipeline
 - [ ] Without DDIMScheduler
 - [ ] Without UNet2DConditionModel
 - [ ] Without AutoencoderKL
-### [Ch0.0.1 Test PareDiffusersPipeline](./notebooks/ch0.0.1_Test_ParedDiffusionPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.1_Test_ParedDiffusionPipeline.ipynb)
-- Test PareDiffusersPipeline by pip install .
+### [Ch0.0.1 Test parediffusers](./notebooks/ch0.0.1_Test_parediffusers.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.1_Test_parediffusers.ipynb)
+- Test PareDiffusersPipeline by pip install parediffusers.
 ### [Ch0.0.2 Play prompt_embeds](./notebooks/ch0.0.2_Play_prompt_embeds.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.2_Play_prompt_embeds.ipynb)
 - Play prompt_embeds, make gradation images by using two prompts.
+### [Ch0.1.0: PareDDIMScheduler](./notebooks/ch0.1.0_PareDDIMScheduler.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.1.0_PareDDIMScheduler.ipynb)
+version: v0.1.3
+- [x] Generate images using diffusers
+- [x] Without StableDiffusionPipeline
+- [x] Without DDIMScheduler
+- [ ] Without UNet2DConditionModel
+- [ ] Without AutoencoderKL
+### [Ch0.1.1: Test parediffusers](./notebooks/ch0.1.1_Test_parediffusers.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.1.1_Test_parediffusers.ipynb)
+- Test PareDiffusersPipeline by pip install parediffusers.
+
 
 ## Usage
 ```python
