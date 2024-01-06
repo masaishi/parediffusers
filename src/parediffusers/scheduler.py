@@ -11,7 +11,7 @@ class PareDDIMScheduler:
 	):
 		"""Initialize beta and alpha values for the scheduler."""
 		self.config = DictDotNotation(**config_dict)
-		self.betas =  torch.linspace(self.config.beta_start**0.5, self.config.beta_end**0.5, self.config.num_train_timesteps, dtype=torch.float32) ** 2
+		self.betas = torch.linspace(self.config.beta_start**0.5, self.config.beta_end**0.5, self.config.num_train_timesteps, dtype=torch.float32) ** 2
 		self.alphas = 1.0 - self.betas
 		self.alphas_cumprod = torch.cumprod(self.alphas, dim=0)
 		self.final_alpha_cumprod = torch.tensor(1.0)
