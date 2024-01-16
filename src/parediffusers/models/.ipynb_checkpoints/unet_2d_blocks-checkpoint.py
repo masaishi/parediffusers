@@ -1,6 +1,5 @@
 import torch
 from torch import nn
-import torch.nn.functional as F
 from typing import Optional, Tuple, Dict, Any, Union
 from .resnet import PareResnetBlock2D
 from .transformer import PareTransformer2DModel
@@ -154,7 +153,7 @@ class PareCrossAttnDownBlock2D(nn.Module):
 		temb: Optional[torch.FloatTensor] = None,
 		encoder_hidden_states: Optional[torch.FloatTensor] = None,
 		attention_mask: Optional[torch.FloatTensor] = None,
-		cross_attention_kwargs: Optional[Dict[str, Any]] = None,
+		cross_attention_kwargs: Optional[Dict[str]] = None,
 		encoder_attention_mask: Optional[torch.FloatTensor] = None,
 		additional_residuals: Optional[torch.FloatTensor] = None,
 	) -> [torch.FloatTensor]:

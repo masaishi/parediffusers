@@ -2,7 +2,6 @@ import math
 from typing import Optional
 import torch
 import torch.nn as nn
-from ..utils import get_activation
 
 def get_pare_timestep_embedding(
 	timesteps: torch.Tensor,

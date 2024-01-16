@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from typing import Optional, Dict, Any
 from .resnet import PareResnetBlock2D
-from .transformer import PareTransformer2DModel
+from .transformer_blocks import PareTransformer2DModel
 
 class PareUNetMidBlock2DCrossAttn(nn.Module):
 	def __init__(
