@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 from torch.nn import functional as F
-from typing import Optional, Dict, Any
+from typing import Optional
 
 class PareGEGLU(nn.Module):
     def __init__(self, dim_in: int, dim_out: int, bias: bool = True):

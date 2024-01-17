@@ -18,7 +18,7 @@ setup(
 	long_description_content_type='text/markdown',
 	license='MIT License',
 	url='https://github.com/masaishi/parediffusers',
-	version='0.2.0',
+	version='0.3.1',
 	python_requires='>=3.6',
 	install_requires=install_requires,
 	package_dir={"": "src"},
