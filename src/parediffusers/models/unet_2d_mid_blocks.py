@@ -3,7 +3,7 @@ from torch import nn
 from typing import Optional, Dict, Any
 from .resnet import PareResnetBlock2D
 from .transformer import PareTransformer2DModel
-from .attention import PareAttention
+from .attension import PareAttention
 
 class PareUNetMidBlock2DCrossAttn(nn.Module):
 	def __init__(

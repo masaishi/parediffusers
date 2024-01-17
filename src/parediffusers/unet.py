@@ -4,7 +4,7 @@ from typing import List, Union
 import json
 from huggingface_hub import hf_hub_download
 from .utils import DotDict, get_activation
-from .default import DEFAULT_UNET_CONFIG
+from .defaults import DEFAULT_UNET_CONFIG
 from .models.embeddings import PareTimestepEmbedding, PareTimesteps
 from .models.unet_2d_get_blocks import pare_get_down_block, pare_get_up_block
 from .models.unet_2d_mid_blocks import PareUNetMidBlock2DCrossAttn

@@ -5,7 +5,7 @@ import torch.nn as nn
 from huggingface_hub import hf_hub_download
 from .utils import DotDict
 from .defaults import DEFAULT_VAE_CONFIG
-from .vae_blocks import PareEncoder, PareDecoder, PareDiagonalGaussianDistribution
+from .models.vae_blocks import PareEncoder, PareDecoder, PareDiagonalGaussianDistribution
 
 class PareAutoencoderKL(nn.Module):
 	def __init__(self, **kwargs):

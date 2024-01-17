@@ -109,7 +109,7 @@ class PareDiffusionPipeline:
 		"""
 		Decode the latent tensors using the VAE to produce an image.
 		"""
-		image = self.vae.decode(latents / self.vae.config.scaling_factor)[0]
+		image = self.vae.decode(latents / self.vae.config.scaling_factor)[0][0]
 		image = self.denormalize(image)
 		image = self.tensor_to_image(image)
 		return image
