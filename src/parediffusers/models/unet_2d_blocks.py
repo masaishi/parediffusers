@@ -307,7 +307,64 @@ class PareUpBlock2D(nn.Module):
 
 		return hidden_states
 	
+	
+class PareUpDecoderBlock2D(nn.Module):
+	def __init__(
+		self,
+		in_channels: int,
+		out_channels: int,
+		resolution_idx: Optional[int] = None,
+		dropout: float = 0.0,
+		num_layers: int = 1,
+		resnet_eps: float = 1e-6,
+		resnet_time_scale_shift: str = "default",  # default, spatial
+		resnet_act_fn: str = "swish",
+		resnet_groups: int = 32,
+		resnet_pre_norm: bool = True,
+		output_scale_factor: float = 1.0,
+		add_upsample: bool = True,
+		temb_channels: Optional[int] = None,
+	):
+		super().__init__()
+		resnets = []
 
+		for i in range(num_layers):
+			input_channels = in_channels if i == 0 else out_channels
+
+			resnets.append(
+				PareResnetBlock2D(
+					in_channels=input_channels,
+					out_channels=out_channels,
+					temb_channels=temb_channels,
+					eps=resnet_eps,
+					groups=resnet_groups,
+					dropout=dropout,
+					non_linearity=resnet_act_fn,
+					output_scale_factor=output_scale_factor,
+				)
+			)
+
+		self.resnets = nn.ModuleList(resnets)
+
+		if add_upsample:
+			self.upsamplers = nn.ModuleList([PareUpsample2D(out_channels, use_conv=True, out_channels=out_channels)])
+		else:
+			self.upsamplers = None
+
+		self.resolution_idx = resolution_idx
+
+	def forward(
+		self, hidden_states: torch.FloatTensor, temb: Optional[torch.FloatTensor] = None
+	) -> torch.FloatTensor:
+		for resnet in self.resnets:
+			hidden_states = resnet(hidden_states, temb=temb)
+
+		if self.upsamplers is not None:
+			for upsampler in self.upsamplers:
+				hidden_states = upsampler(hidden_states)
+
+		return hidden_states
+	
 class PareCrossAttnUpBlock2D(nn.Module):
 	def __init__(
 		self,
@@ -497,5 +554,4 @@ class PareUpsample2D(nn.Module):
 			else:
 				hidden_states = self.Conv2d_0(hidden_states)
 
-		return hidden_states
-	
+		return hidden_states	

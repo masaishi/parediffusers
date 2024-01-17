@@ -15,6 +15,7 @@ class PareResnetBlock2D(nn.Module):
 		dropout: float = 0.0,
 		non_linearity: str = "swish",
 		output_scale_factor: float = 1.0,
+		skip_time_act: bool = False,
 	):
 		super().__init__()
 		self.in_channels = in_channels
@@ -88,12 +89,14 @@ class PareResnetBlock2D(nn.Module):
 
 		hidden_states = self.conv1(hidden_states)
 
-		temb = self.nonlinearity(temb)
-		temb = (
-			self.time_emb_proj(temb)[:, :, None, None]
-		)
+		if self.time_emb_proj is not None:
+			temb = self.nonlinearity(temb)
+			temb = (
+				self.time_emb_proj(temb)[:, :, None, None]
+			)
 
-		hidden_states = hidden_states + temb
+		if temb is not None:
+			hidden_states = hidden_states + temb
 		hidden_states = self.norm2(hidden_states)
 
 		hidden_states = self.nonlinearity(hidden_states)

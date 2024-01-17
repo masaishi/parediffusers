@@ -92,3 +92,23 @@ DEFAULT_UNET_CONFIG = {
 	"_diffusers_version": "0.8.0",
 	"_name_or_path": "stabilityai/stable-diffusion-2",	
 }
+
+
+DEFAULT_VAE_CONFIG = {
+	"in_channels": 3,
+	"out_channels": 3,
+	"down_block_types": ["DownEncoderBlock2D", "DownEncoderBlock2D", "DownEncoderBlock2D", "DownEncoderBlock2D"],
+	"up_block_types": ["UpDecoderBlock2D", "UpDecoderBlock2D", "UpDecoderBlock2D", "UpDecoderBlock2D"],
+	"block_out_channels": [128, 256, 512, 512],
+	"layers_per_block": 2,
+	"act_fn": "silu",
+	"latent_channels": 4,
+	"norm_num_groups": 32,
+	"sample_size": 768,
+	"scaling_factor": 0.18215,
+	"force_upcast": True,
+	"_use_default_values": ["scaling_factor", "force_upcast"],
+	"_class_name": "AutoencoderKL",
+	"_diffusers_version": "0.8.0",
+	"_name_or_path": "stabilityai/stable-diffusion-2",	
+}

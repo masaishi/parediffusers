@@ -4,6 +4,7 @@ from .unet_2d_blocks import (
 	PareDownBlock2D,
 	PareCrossAttnDownBlock2D,
 	PareUpBlock2D,
+	PareUpDecoderBlock2D,
 	PareCrossAttnUpBlock2D,
 )
 
@@ -83,9 +84,12 @@ def pare_get_up_block(
 	dual_cross_attention: bool = False,
 	use_linear_projection: bool = False,
 	only_cross_attention: bool = False,
+	attention_head_dim: Optional[int] = None,
 	upcast_attention: bool = False,
 	dropout: float = 0.0,
 ) -> nn.Module:
+	if attention_head_dim is None:
+		attention_head_dim = num_attention_heads
 	up_block_type = up_block_type[7:] if up_block_type.startswith("UNetRes") else up_block_type
 	if up_block_type == "UpBlock2D":
 		return PareUpBlock2D(
@@ -121,4 +125,17 @@ def pare_get_up_block(
 			use_linear_projection=use_linear_projection,
 			only_cross_attention=only_cross_attention,
 			upcast_attention=upcast_attention,
+		)
+	elif up_block_type == "UpDecoderBlock2D":
+		return PareUpDecoderBlock2D(
+			num_layers=num_layers,
+			in_channels=in_channels,
+			out_channels=out_channels,
+			resolution_idx=resolution_idx,
+			dropout=dropout,
+			add_upsample=add_upsample,
+			resnet_eps=resnet_eps,
+			resnet_act_fn=resnet_act_fn,
+			resnet_groups=resnet_groups,
+			temb_channels=temb_channels,
 		)

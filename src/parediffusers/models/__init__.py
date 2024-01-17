@@ -6,3 +6,4 @@ from .transformer_blocks import *
 from .unet_2d_blocks import *
 from .unet_2d_get_blocks import *
 from .unet_2d_mid_blocks import *
+from .vae_blocks import *
