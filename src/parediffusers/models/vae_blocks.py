@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 from typing import Optional, Tuple
 from .unet_2d_get_blocks import pare_get_up_block, pare_get_down_block
+from .unet_2d_mid_blocks import PareUNetMidBlock2D
 
 class PareEncoder(nn.Module):
 	def __init__(

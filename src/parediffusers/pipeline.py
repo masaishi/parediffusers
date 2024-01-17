@@ -3,7 +3,7 @@ from torchvision.transforms import ToPILImage
 from transformers import CLIPTokenizer, CLIPTextModel
 from .scheduler import PareDDIMScheduler
 from .unet import PareUNet2DConditionModel
-from diffusers import AutoencoderKL
+from .vae import PareAutoencoderKL
 
 class PareDiffusionPipeline:
 	def __init__(self, tokenizer, text_encoder, scheduler, unet, vae, device=torch.device("cuda"), dtype=torch.float16):
@@ -35,7 +35,7 @@ class PareDiffusionPipeline:
 		text_encoder = CLIPTextModel.from_pretrained(model_name, subfolder="text_encoder")
 		scheduler = PareDDIMScheduler.from_config(model_name, subfolder="scheduler")
 		unet = PareUNet2DConditionModel.from_pretrained(model_name, subfolder="unet")
-		vae = AutoencoderKL.from_pretrained(model_name, subfolder="vae")
+		vae = PareAutoencoderKL.from_pretrained(model_name, subfolder="vae")
 		return cls(tokenizer, text_encoder, scheduler, unet, vae, device, dtype)
 
 	def encode_prompt(self, prompt: str):
@@ -109,7 +109,7 @@ class PareDiffusionPipeline:
 		"""
 		Decode the latent tensors using the VAE to produce an image.
 		"""
-		image = self.vae.decode(latents / self.vae.config.scaling_factor)[0][0]
+		image = self.vae.decode(latents / self.vae.config.scaling_factor)[0]
 		image = self.denormalize(image)
 		image = self.tensor_to_image(image)
 		return image

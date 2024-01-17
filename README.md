@@ -16,6 +16,7 @@ I hope that it helps others who share a similar interest in the inner workings o
 - v0.0.0: After Ch0.0.0, inprement StableDiffusionPipeline.
 - v0.1.2: After Ch0.1.0, imprement DDIMScheduler.
 - v0.2.0: After Ch0.2.0, imprement UNet2DConditionModel.
+- v0.3.1: After Ch0.3.0, imprement AutoencoderKL.
 
 ## Table of Contents
 ### [Ch0.0.0 PareDiffusersPipeline](./notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb)
@@ -46,6 +47,15 @@ version: v0.2.0
 - [x] Imprement UNet2DConditionModel
 - [ ] Imprement AutoencoderKL
 ### [Ch0.2.1: Test parediffusers](./notebooks/ch0.2.1_Test_PareDiffusersPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.2.1_Test_PareDiffusersPipeline.ipynb)
+- Test PareDiffusersPipeline by pip install parediffusers.
+### [Ch0.3.0: PareAutoencoderKL](./notebooks/ch0.3.0_PareAutoencoderKL.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.3.0_PareAutoencoderKL.ipynb)
+version: v0.3.1
+- [x] Generate images using diffusers
+- [x] Imprement StableDiffusionPipeline
+- [x] Imprement DDIMScheduler
+- [x] Imprement UNet2DConditionModel
+- [x] Imprement AutoencoderKL
+### [Ch0.3.1: Test parediffusers](./notebooks/ch0.3.1_Test_PareDiffusersPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.3.1_Test_PareDiffusersPipeline.ipynb)
 - Test PareDiffusersPipeline by pip install parediffusers.
 
 
