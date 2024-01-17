@@ -3,7 +3,8 @@ from PIL import Image
 from torchvision.transforms import ToPILImage
 from transformers import CLIPTokenizer, CLIPTextModel
 from .scheduler import PareDDIMScheduler
-from diffusers import UNet2DConditionModel, AutoencoderKL
+from .unet import PareUNet2DConditionModel
+from diffusers import AutoencoderKL
 
 class PareDiffusionPipeline:
 	def __init__(self, tokenizer, text_encoder, scheduler, unet, vae, device=torch.device("cuda"), dtype=torch.float16):
@@ -34,7 +35,7 @@ class PareDiffusionPipeline:
 		tokenizer = CLIPTokenizer.from_pretrained(model_name, subfolder="tokenizer")
 		text_encoder = CLIPTextModel.from_pretrained(model_name, subfolder="text_encoder")
 		scheduler = PareDDIMScheduler.from_config(model_name, subfolder="scheduler")
-		unet = UNet2DConditionModel.from_pretrained(model_name, subfolder="unet")
+		unet = PareUNet2DConditionModel.from_pretrained(model_name, subfolder="unet")
 		vae = AutoencoderKL.from_pretrained(model_name, subfolder="vae")
 		return cls(tokenizer, text_encoder, scheduler, unet, vae, device, dtype)
 
@@ -83,7 +84,7 @@ class PareDiffusionPipeline:
 			latent_model_input = torch.cat([latents] * 2)
 			
 			# Predict the noise residual for the current timestep
-			noise_residual = self.unet(latent_model_input, t, encoder_hidden_states=prompt_embeds)[0]
+			noise_residual = self.unet(latent_model_input, t, encoder_hidden_states=prompt_embeds)
 			uncond_residual, text_cond_residual = noise_residual.chunk(2)
 			guided_noise_residual = uncond_residual + guidance_scale * (text_cond_residual - uncond_residual)
 

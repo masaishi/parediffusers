@@ -1,4 +1,7 @@
 from .pipeline import PareDiffusionPipeline
 from .scheduler import PareDDIMScheduler
+from .unet import PareUNet2DConditionModel
 
-__version__ = '0.1.2'
+from .models import *
+
+__version__ = '0.2.0'

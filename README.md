@@ -13,28 +13,39 @@ I will write blog-style [notebooks](./notebooks) understanding how works using a
 I hope that it helps others who share a similar interest in the inner workings of image generation.
 
 ## Versions
-- v0.0.0: After Ch0.0.0, without StableDiffusionPipeline.
+- v0.0.0: After Ch0.0.0, inprement StableDiffusionPipeline.
+- v0.1.2: After Ch0.1.0, imprement DDIMScheduler.
+- v0.2.0: After Ch0.2.0, imprement UNet2DConditionModel.
 
 ## Table of Contents
 ### [Ch0.0.0 PareDiffusersPipeline](./notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.0_ParedDiffusionPipeline.ipynb)
 version: v0.0.0
 - [x] Generate images using diffusers
-- [x] Without StableDiffusionPipeline
-- [ ] Without DDIMScheduler
-- [ ] Without UNet2DConditionModel
-- [ ] Without AutoencoderKL
+- [x] Imprement StableDiffusionPipeline
+- [ ] Imprement DDIMScheduler
+- [ ] Imprement UNet2DConditionModel
+- [ ] Imprement AutoencoderKL
 ### [Ch0.0.1 Test parediffusers](./notebooks/ch0.0.1_Test_parediffusers.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.1_Test_parediffusers.ipynb)
 - Test PareDiffusersPipeline by pip install parediffusers.
 ### [Ch0.0.2 Play prompt_embeds](./notebooks/ch0.0.2_Play_prompt_embeds.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.0.2_Play_prompt_embeds.ipynb)
 - Play prompt_embeds, make gradation images by using two prompts.
 ### [Ch0.1.0: PareDDIMScheduler](./notebooks/ch0.1.0_PareDDIMScheduler.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.1.0_PareDDIMScheduler.ipynb)
 version: v0.1.3
-- [x] Generate images using diffusers
-- [x] Without StableDiffusionPipeline
-- [x] Without DDIMScheduler
-- [ ] Without UNet2DConditionModel
-- [ ] Without AutoencoderKL
+- [x] Imprement images using diffusers
+- [x] Imprement StableDiffusionPipeline
+- [x] Imprement DDIMScheduler
+- [ ] Imprement UNet2DConditionModel
+- [ ] Imprement AutoencoderKL
 ### [Ch0.1.1: Test parediffusers](./notebooks/ch0.1.1_Test_parediffusers.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.1.1_Test_parediffusers.ipynb)
+- Test PareDiffusersPipeline by pip install parediffusers.
+### [Ch0.2.0: PareUNet2DConditionModel](./notebooks/ch0.2.0_PareUNet2DConditionModel.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.2.0_PareUNet2DConditionModel.ipynb)
+version: v0.2.0
+- [x] Generate images using diffusers
+- [x] Imprement StableDiffusionPipeline
+- [x] Imprement DDIMScheduler
+- [x] Imprement UNet2DConditionModel
+- [ ] Imprement AutoencoderKL
+### [Ch0.2.1: Test parediffusers](./notebooks/ch0.2.1_Test_PareDiffusersPipeline.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/masaishi/parediffusers/blob/main/notebooks/ch0.2.1_Test_PareDiffusersPipeline.ipynb)
 - Test PareDiffusersPipeline by pip install parediffusers.
 
 
