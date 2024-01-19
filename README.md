@@ -4,7 +4,7 @@
 
 [![parediffusers on PyPI](https://img.shields.io/pypi/v/parediffusers.svg)](https://pypi.org/project/parediffusers)
 
-The library `pared` down the features of `diffusers` implemented the minimum function to generate images without using [huggingface/diffusers](https://github.com/huggingface/diffusers/tree/main) to understand the inner workings of the library.
+The library `pared` down the features of `diffusers` implemented the minimum function to generate images without using [huggingface/diffusers](https://github.com/huggingface/diffusers/tree/main) functions to understand the inner workings of the library.
 
 
 ## Why PareDiffusers?
