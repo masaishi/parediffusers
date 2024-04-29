@@ -46,7 +46,7 @@ display(image)
 
 ## 3. Pipelineを理解する
 
-Diffusersで書かれている、StableDiffusionPipelineの実際のコードは[こちら](https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py)です。
+Diffusersで書かれているStableDiffusionPipelineの実際のコードは[こちら](https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py)です。
 
 このPipelineは以下のようなフローにまとめられます。
 
@@ -79,8 +79,7 @@ https://github.com/masaishi/parediffusers/blob/035772c684ae8d16c7c908f185f6413b7
 
 上記のコードからわかるように、潜在テンソルのサイズは[batch_size, 1, width // 8, height // 8]です。つまり、生成したい画像サイズの1/8のスケールにすることで、訓練時の計算量を削減しています。
 
-<br />
-このコードで生成されるlatentは、以下のような画像です。
+latentのサンプル
 
 ![latent](../assets/latent.png)
 
@@ -122,7 +121,7 @@ https://github.com/masaishi/parediffusers/blob/035772c684ae8d16c7c908f185f6413b7
 
 このコードを書いたときに、113行目のdenormalizeを行うことを忘れていました。VAEの訓練時に、画像データは正規化されているため、これを0-255の範囲に戻しています。
 
-| Denoised latent  | VAE decoded image |
-| ------------- | ------------- |
-| ![denoised](../assets/before_vae.png)  |  ![decoded](../assets/after_vae.png)  |
+| Denoised latent                          |     | VAE decoded image                     |
+| ---------------------------------------- | --- | ------------------------------------- |
+| ![denoised](../assets/before_vae.png)    |  →  |  ![decoded](../assets/after_vae.png)  |
 
