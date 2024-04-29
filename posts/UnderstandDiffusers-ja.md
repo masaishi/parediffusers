@@ -1,4 +1,4 @@
-# ソースコードから理解するDiffusers
+# ソースコードから理解するDiffusion Model
 
 ## 1. はじめに
 
@@ -16,7 +16,7 @@ AIに興味があるエンジニアや学生の多くは、Stable Diffusionの�
 
 　僕は専門家などではなく、ただAI技術が好きな学生のため、僕の理解に間違いがあるかもしれません。もしそのような間違いを発見された場合は、コメントなどでご指摘いただければ幸いです。
 
-## 2. Diffusersを試す
+## 2. text-to-imgを試す
 
 まだDiffusersというライブラリを触ったことがない人のために、そのライブラリを使ってどのように画像を生成できるかを紹介します。Google Colabなどで試してみることができるので、diffusers使ったことがない人は是非動かしてみてください。
 
@@ -26,8 +26,7 @@ AIに興味があるエンジニアや学生の多くは、Stable Diffusionの�
 !pip install transformers diffusers accelerate -U
 ```
 
-StableDiffusionPipelineを使って画像を生成する簡単な例を見てみましょう：
-
+text-to-img:
 ```python
 import torch
 from diffusers import StableDiffusionPipeline
@@ -44,9 +43,36 @@ display(image)
 
 このコードでは、[Stability AI](https://stability.ai/)が開発した、Stable Diffusion 2.0をHugging Face Hubからダウンロードし、「painting depicting the sea, sunrise, ship, artstation, 4k, concept art(海、日の出、船、アートステーション、4K、コンセプトアートを描いた絵画)」というプロンプトを用いて画像を生成しています。
 
+PareDiffusersを使ったtext-to-imgの例も載せておきます。
+
+インストール:
+
+```python
+!pip install parediffusers
+```
+
+text-to-img:
+
+```python
+import torch
+from parediffusers import PareDiffusionPipeline
+
+device = torch.device("cuda")
+dtype = torch.float16
+model_name = "stabilityai/stable-diffusion-2"
+
+pare_pipe = PareDiffusionPipeline.from_pretrained(model_name, device=device, dtype=dtype)
+prompt = "painting depicting the sea, sunrise, ship, artstation, 4k, concept art"
+image = pare_pipe(prompt)
+display(image)
+```
+
+
 ## 3. Pipelineを理解する
 
 Diffusersで書かれているStableDiffusionPipelineの実際のコードは[こちら](https://github.com/huggingface/diffusers/blob/main/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py)です。
+
+実際のStableDiffusionPipelineは、1000行以上ありかなり複雑なので、最低限の機能しか持たない、parediffusersのコードを見ながら解説していきます。
 
 このPipelineは以下のようなフローにまとめられます。
 
@@ -69,7 +95,9 @@ Diffusersでは、[huggingface/transfomers](https://github.com/huggingface/trans
 
 https://github.com/masaishi/parediffusers/blob/035772c684ae8d16c7c908f185f6413b72658126/src/parediffusers/pipeline.py#L41-L57
 
-コードはとてもシンプルで、`get_embes`関数を使い、prompt_embedsとnegative_prompt_embedsに変換しています。シンプルにするために、negative_promptは空の文字列としています。
+45と46行目で、`get_embes`関数を呼ぶことで、prompt_embedsとnegative_prompt_embedsに変換しています。シンプルにするために、negative_promptは空の文字列としています。
+
+`get_embes`では、54行目でCLIPTokenizerを使って、プロンプトをトークン化しています。トークン化されたプロンプトは、56行目でCLIPTextModelに渡され、プロンプトのembeddingが得られます。
 
 ### 3.2. `get_latent`関数
 
@@ -89,7 +117,7 @@ latentのサンプル
 
 https://github.com/masaishi/parediffusers/blob/035772c684ae8d16c7c908f185f6413b72658126/src/parediffusers/pipeline.py#L67-L93
 
-67=73行目で、timestepsを返す関数`retrieve_timesteps`を定義しています。この関数で使われている`scheduler`については、4. DDIMSchedulerで詳しく説明します。ここで重要なのは、3.1で説明したprompt_embedsと、3.2で生成した初期潜在テンソルを引数として渡していることです。
+67~73行目で、timestepsを返す関数`retrieve_timesteps`を定義しています。この関数で使われている`scheduler`については、4. DDIMSchedulerで詳しく説明します。ここで重要なのは、3.1で説明したprompt_embedsと、3.2で生成した初期潜在テンソルを引数として渡していることです。
 
 恥ずかしい話ですが、実際にコードを書く前は、プロンプトの情報をどこで使っているかを、僕は把握していませんでした。しかし、コードを書いてみることで、prompt_embedsが1回だけ使われるのではなく、デノイズループのたびに使われることがわかりました。
 
