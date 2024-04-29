@@ -124,5 +124,5 @@ https://github.com/masaishi/parediffusers/blob/035772c684ae8d16c7c908f185f6413b7
 
 | Denoised latent  | VAE decoded image |
 | ------------- | ------------- |
-| ![denoised](../assets/before_vae.png)  |  ![decoded](../assets/decoded.png)  |
+| ![denoised](../assets/before_vae.png)  |  ![decoded](../assets/after_vae.png)  |
 
