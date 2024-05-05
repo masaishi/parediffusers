@@ -60,7 +60,7 @@ class PareDiffusionPipeline:
 		"""
 		Generate a random initial latent tensor to start the diffusion process.
 		"""
-		return torch.randn((4, width // 8, height // 8)).to(
+		return torch.randn((4, height // 8, width // 8)).to(
 			device=self.device, dtype=self.dtype
 		)
 
