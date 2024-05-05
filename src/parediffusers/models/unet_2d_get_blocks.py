@@ -3,6 +3,7 @@ from typing import Optional
 from .unet_2d_blocks import (
 	PareDownBlock2D,
 	PareCrossAttnDownBlock2D,
+	PareDownEncoderBlock2D,
 	PareUpBlock2D,
 	PareUpDecoderBlock2D,
 	PareCrossAttnUpBlock2D,
@@ -63,6 +64,18 @@ def pare_get_down_block(
 			use_linear_projection=use_linear_projection,
 			only_cross_attention=only_cross_attention,
 			upcast_attention=upcast_attention,
+		)
+	elif down_block_type == "DownEncoderBlock2D":
+		return PareDownEncoderBlock2D(
+			num_layers=num_layers,
+			in_channels=in_channels,
+			out_channels=out_channels,
+			dropout=dropout,
+			add_downsample=add_downsample,
+			resnet_eps=resnet_eps,
+			resnet_act_fn=resnet_act_fn,
+			resnet_groups=resnet_groups,
+			downsample_padding=downsample_padding,
 		)
 
 

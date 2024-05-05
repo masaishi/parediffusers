@@ -188,6 +188,65 @@ class PareCrossAttnDownBlock2D(nn.Module):
 		return hidden_states, output_states
 
 
+class PareDownEncoderBlock2D(nn.Module):
+	def __init__(
+		self,
+		in_channels: int,
+		out_channels: int,
+		dropout: float = 0.0,
+		num_layers: int = 1,
+		resnet_eps: float = 1e-6,
+		resnet_act_fn: str = "swish",
+		resnet_groups: int = 32,
+		output_scale_factor: float = 1.0,
+		add_downsample: bool = True,
+		downsample_padding: int = 1,
+	):
+		super().__init__()
+		resnets = []
+
+		for i in range(num_layers):
+			in_channels = in_channels if i == 0 else out_channels
+			resnets.append(
+				PareResnetBlock2D(
+					in_channels=in_channels,
+					out_channels=out_channels,
+					temb_channels=None,
+					eps=resnet_eps,
+					groups=resnet_groups,
+					dropout=dropout,
+					non_linearity=resnet_act_fn,
+					output_scale_factor=output_scale_factor,
+				)
+			)
+
+		self.resnets = nn.ModuleList(resnets)
+
+		if add_downsample:
+			self.downsamplers = nn.ModuleList(
+				[
+					PareDownsample2D(
+						out_channels, use_conv=True, out_channels=out_channels, padding=downsample_padding, name="op"
+					)
+				]
+			)
+		else:
+			self.downsamplers = None
+
+	def forward(self, hidden_states: torch.FloatTensor, *args, **kwargs) -> torch.FloatTensor:
+		if len(args) > 0 or kwargs.get("scale", None) is not None:
+			deprecation_message = "The `scale` argument is deprecated and will be ignored. Please remove it, as passing it will raise an error in the future. `scale` should directly be passed while calling the underlying pipeline component i.e., via `cross_attention_kwargs`."
+			deprecate("scale", "1.0.0", deprecation_message)
+
+		for resnet in self.resnets:
+			hidden_states = resnet(hidden_states, temb=None)
+
+		if self.downsamplers is not None:
+			for downsampler in self.downsamplers:
+				hidden_states = downsampler(hidden_states)
+
+		return hidden_states
+
 class PareDownsample2D(nn.Module):
 	def __init__(
 		self,
